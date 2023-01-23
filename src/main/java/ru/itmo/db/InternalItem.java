@@ -13,7 +13,7 @@ public class InternalItem {
     private Integer iid;
 
     @Column(nullable = false)
-    private Integer type;
+    private Integer type_id;
 
     @Column(nullable = false, length = 64)
     private String owner_login;
@@ -30,9 +30,9 @@ public class InternalItem {
     public InternalItem() {
     }
 
-    public InternalItem(Integer iid, Integer type, String owner_login, String name, Integer rarity, String description) {
+    public InternalItem(Integer iid, Integer type_id, String owner_login, String name, Integer rarity, String description) {
         this.iid = iid;
-        this.type = type;
+        this.type_id = type_id;
         this.owner_login = owner_login;
         this.name = name;
         this.rarity = rarity;
@@ -47,12 +47,12 @@ public class InternalItem {
         this.iid = iid;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getType_id() {
+        return type_id;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setType_id(Integer type_id) {
+        this.type_id = type_id;
     }
 
     public String getOwner_login() {

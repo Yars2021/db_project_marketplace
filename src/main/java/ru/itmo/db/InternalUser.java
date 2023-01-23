@@ -24,15 +24,19 @@ public class InternalUser {
     @Column(nullable = false)
     private Integer salesman_reputation;
 
+    @Column(nullable = false)
+    private Integer balance;
+
     public InternalUser() {
     }
 
-    public InternalUser(String login, String password, String username, Integer buyer_reputation, Integer salesman_reputation) {
+    public InternalUser(String login, String password, String username, Integer buyer_reputation, Integer salesman_reputation, Integer balance) {
         this.login = login;
         this.password = password;
         this.username = username;
         this.buyer_reputation = buyer_reputation;
         this.salesman_reputation = salesman_reputation;
+        this.balance = balance;
     }
 
     public String getLogin() {
@@ -73,5 +77,13 @@ public class InternalUser {
 
     public void setSalesman_reputation(Integer salesman_reputation) {
         this.salesman_reputation = salesman_reputation;
+    }
+
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
     }
 }
