@@ -1,0 +1,23 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /
+    session:
+      timeout: 600s
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: s312198
+    password: W3JLGLfajdxkgU7j
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
