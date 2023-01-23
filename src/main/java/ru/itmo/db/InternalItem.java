@@ -13,6 +13,9 @@ public class InternalItem {
     private Integer iid;
 
     @Column(nullable = false)
+    private String type;
+
+    @Column(nullable = false)
     private String owner_login;
 
     @Column(nullable = false, length = 256)
@@ -27,20 +30,20 @@ public class InternalItem {
     public InternalItem() {
     }
 
-    public InternalItem(Integer iid, String owner_login, String name, Integer rarity, String description) {
-        this.iid = iid;
-        this.owner_login = owner_login;
-        this.name = name;
-        this.rarity = rarity;
-        this.description = description;
-    }
-
     public Integer getIid() {
         return iid;
     }
 
     public void setIid(Integer iid) {
         this.iid = iid;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getOwner_login() {
