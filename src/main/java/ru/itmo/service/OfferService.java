@@ -1,7 +1,5 @@
 package ru.itmo.service;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToMany;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itmo.db.InternalItem;
@@ -11,6 +9,7 @@ import ru.itmo.db.OfferRepository;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -69,5 +68,17 @@ public class OfferService {
 
             submitOffer(internalOffer);
         }
+    }
+
+    public Set<InternalItem> getItemsOfTheOffer(Integer oid) {
+        if (offerRepository == null || offerRepository.findById(oid).isEmpty()) return new HashSet<>();
+        InternalOffer internalOffer = offerRepository.findById(oid).get();
+        return internalOffer.getItems();
+    }
+
+    public Integer getPrice(Integer oid) {
+        if (offerRepository == null || offerRepository.findById(oid).isEmpty()) return 0;
+        InternalOffer internalOffer = offerRepository.findById(oid).get();
+        return internalOffer.getPrice();
     }
 }

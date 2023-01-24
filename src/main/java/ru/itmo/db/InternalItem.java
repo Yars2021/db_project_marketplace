@@ -30,7 +30,7 @@ public class InternalItem {
     @Column(length = 1024)
     private String description;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "items")
     private Set<InternalOffer> offers;
 
     public InternalItem() {

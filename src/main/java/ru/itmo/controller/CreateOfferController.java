@@ -82,6 +82,7 @@ public class CreateOfferController {
 
             for (String item : iid) {
                 items_to_sell.add(itemService.getItemById(Integer.parseInt(item)));
+                itemService.removeOwner(Integer.parseInt(item));
             }
 
             offerService.submitOffer(user_id, Integer.parseInt(price), items_to_sell);

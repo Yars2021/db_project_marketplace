@@ -31,6 +31,10 @@ public class InternalOffer {
     private Integer status;
 
     @ManyToMany
+    @JoinTable(
+            name = "offer_item",
+            joinColumns = @JoinColumn(name = "offer_oid"),
+            inverseJoinColumns = @JoinColumn(name = "item_iid"))
     private Set<InternalItem> items;
 
     public InternalOffer() {

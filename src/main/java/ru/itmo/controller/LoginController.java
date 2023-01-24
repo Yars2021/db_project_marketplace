@@ -30,7 +30,7 @@ public class LoginController {
             return "login";
         }
 
-        model.put("session_username", session_username);
+        model.addAttribute("session_username", session_username);
         model.put("username", loginService.getUsernameByLogin(session_username));
         model.put("password", password);
 

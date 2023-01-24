@@ -51,4 +51,12 @@ public class ItemService {
         if (itemRepository == null || itemRepository.findById(id).isEmpty()) return null;
         return itemRepository.findById(id).get();
     }
+
+    public void removeOwner(Integer id) {
+        if (itemRepository != null && itemRepository.findById(id).isPresent()) {
+            InternalItem internalItem = itemRepository.findById(id).get();
+            internalItem.setOwner("");
+            itemRepository.save(internalItem);
+        }
+    }
 }
