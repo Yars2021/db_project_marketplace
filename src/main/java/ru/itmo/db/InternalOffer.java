@@ -1,9 +1,7 @@
 package ru.itmo.db;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "offers")
@@ -13,30 +11,41 @@ public class InternalOffer {
     private Integer oid;
 
     @Column(nullable = false, length = 64)
-    private String salesman_login;
+    private String salesman;
 
     @Column(length = 64)
-    private String buyer_login;
+    private String buyer;
 
     @Column(nullable = false)
     private Integer price;
 
     @Column(nullable = false)
-    private String date_of_publishing;
+    private String published;
 
     @Column(nullable = false)
-    private Integer status_id;
+    private Integer status;
+
+    @ManyToMany
+    private Set<InternalItem> items;
 
     public InternalOffer() {
     }
 
-    public InternalOffer(Integer oid, String salesman_login, String buyer_login, Integer price, String date_of_publishing, Integer status_id) {
+    public InternalOffer(Integer oid, String salesman, String buyer, Integer price, String published, Integer status) {
         this.oid = oid;
-        this.salesman_login = salesman_login;
-        this.buyer_login = buyer_login;
+        this.salesman = salesman;
+        this.buyer = buyer;
         this.price = price;
-        this.date_of_publishing = date_of_publishing;
-        this.status_id = status_id;
+        this.published = published;
+        this.status = status;
+    }
+
+    public Set<InternalItem> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<InternalItem> items) {
+        this.items = items;
     }
 
     public Integer getOid() {
@@ -47,20 +56,20 @@ public class InternalOffer {
         this.oid = oid;
     }
 
-    public String getSalesman_login() {
-        return salesman_login;
+    public String getSalesman() {
+        return salesman;
     }
 
-    public void setSalesman_login(String salesman_login) {
-        this.salesman_login = salesman_login;
+    public void setSalesman(String salesman) {
+        this.salesman = salesman;
     }
 
-    public String getBuyer_login() {
-        return buyer_login;
+    public String getBuyer() {
+        return buyer;
     }
 
-    public void setBuyer_login(String buyer_login) {
-        this.buyer_login = buyer_login;
+    public void setBuyer(String buyer) {
+        this.buyer = buyer;
     }
 
     public Integer getPrice() {
@@ -71,19 +80,19 @@ public class InternalOffer {
         this.price = price;
     }
 
-    public String getDate_of_publishing() {
-        return date_of_publishing;
+    public String getPublished() {
+        return published;
     }
 
-    public void setDate_of_publishing(String date_of_publishing) {
-        this.date_of_publishing = date_of_publishing;
+    public void setPublished(String published) {
+        this.published = published;
     }
 
-    public Integer getStatus_id() {
-        return status_id;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setStatus_id(Integer status_id) {
-        this.status_id = status_id;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

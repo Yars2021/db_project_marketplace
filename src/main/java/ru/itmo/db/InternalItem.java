@@ -1,22 +1,25 @@
 package ru.itmo.db;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "items")
 public class InternalItem {
     @Id
     @Column(unique = true, nullable = false)
+    @SequenceGenerator(name="item_id_seq",
+            sequenceName="item_id_seq",
+            allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator="item_id_seq")
     private Integer iid;
 
     @Column(nullable = false)
-    private Integer type_id;
+    private Integer type;
 
     @Column(nullable = false, length = 64)
-    private String owner_login;
+    private String owner;
 
     @Column(nullable = false, length = 256)
     private String name;
@@ -27,16 +30,35 @@ public class InternalItem {
     @Column(length = 1024)
     private String description;
 
+    @ManyToMany
+    private Set<InternalOffer> offers;
+
     public InternalItem() {
     }
 
-    public InternalItem(Integer iid, Integer type_id, String owner_login, String name, Integer rarity, String description) {
-        this.iid = iid;
-        this.type_id = type_id;
-        this.owner_login = owner_login;
+    public InternalItem(Integer type, String owner, String name, Integer rarity, String description) {
+        this.type = type;
+        this.owner = owner;
         this.name = name;
         this.rarity = rarity;
         this.description = description;
+    }
+
+    public InternalItem(Integer iid, Integer type, String owner, String name, Integer rarity, String description) {
+        this.iid = iid;
+        this.type = type;
+        this.owner = owner;
+        this.name = name;
+        this.rarity = rarity;
+        this.description = description;
+    }
+
+    public Set<InternalOffer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(Set<InternalOffer> offers) {
+        this.offers = offers;
     }
 
     public Integer getIid() {
@@ -47,20 +69,20 @@ public class InternalItem {
         this.iid = iid;
     }
 
-    public Integer getType_id() {
-        return type_id;
+    public Integer getType() {
+        return type;
     }
 
-    public void setType_id(Integer type_id) {
-        this.type_id = type_id;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
-    public String getOwner_login() {
-        return owner_login;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setOwner_login(String owner_login) {
-        this.owner_login = owner_login;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getName() {
