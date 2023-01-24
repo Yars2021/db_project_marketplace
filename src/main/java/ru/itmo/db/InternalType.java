@@ -13,14 +13,14 @@ public class InternalType {
     private Integer tid;
 
     @Column(nullable = false)
-    private String type_name;
+    private String type;
 
     public InternalType() {
     }
 
-    public InternalType(Integer tid, String type_name) {
+    public InternalType(Integer tid, String type) {
         this.tid = tid;
-        this.type_name = type_name;
+        this.type = type;
     }
 
     public Integer getTid() {
@@ -31,11 +31,11 @@ public class InternalType {
         this.tid = tid;
     }
 
-    public String getType_name() {
-        return type_name;
+    public String getType() {
+        return type;
     }
 
-    public void setType_name(String type_name) {
-        this.type_name = type_name;
+    public void setType(String type_name) {
+        this.type = type_name;
     }
 }

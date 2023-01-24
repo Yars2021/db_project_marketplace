@@ -13,14 +13,14 @@ public class InternalRarity {
     private Integer rid;
 
     @Column(nullable = false)
-    private String rarity_name;
+    private String rarity;
 
     public InternalRarity() {
     }
 
-    public InternalRarity(Integer rid, String rarity_name) {
+    public InternalRarity(Integer rid, String rarity) {
         this.rid = rid;
-        this.rarity_name = rarity_name;
+        this.rarity = rarity;
     }
 
     public Integer getRid() {
@@ -31,11 +31,11 @@ public class InternalRarity {
         this.rid = rid;
     }
 
-    public String getRarity_name() {
-        return rarity_name;
+    public String getRarity() {
+        return rarity;
     }
 
-    public void setRarity_name(String rarity_name) {
-        this.rarity_name = rarity_name;
+    public void setRarity(String rarity_name) {
+        this.rarity = rarity_name;
     }
 }

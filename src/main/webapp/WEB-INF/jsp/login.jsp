@@ -2,16 +2,21 @@
 
 <head>
     <title>Login</title>
+    <link href="../../css/table.css" rel="stylesheet">
+    <link href="../../css/main.css" rel="stylesheet">
 </head>
 
 <body>
+<h2>Authorization</h2>
+<hr>
+<a href = "/">Back to the main page</a>
+<hr>
 <form method="post">
-    <a href = "/">Back to the main page</a>
-    Name : <input type="text" name="name" />
+    Name : <input type="text" name="session_username" />
     Password : <input type="password" name="password" />
     <input type="submit" />
 </form>
-${errorMessage}
+${user_status}
 </body>
 
 </html>

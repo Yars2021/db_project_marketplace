@@ -4,10 +4,15 @@
 
 <head>
     <title>Offer</title>
+    <link href="../../css/table.css" rel="stylesheet">
+    <link href="../../css/main.css" rel="stylesheet">
 </head>
 
 <body>
 <h2>${name}</h2>
+<hr>
+<a href = "/">Back to the main page</a>
+<hr>
 <table>
     <tr><td>Class</td><td>${class}</td></tr>
     <tr><td>Rarity</td><td>${rarity}</td></tr>

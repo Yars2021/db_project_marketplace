@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Offers</title>
+    <title>Deals</title>
     <link href="../../css/table.css" rel="stylesheet">
     <link href="../../css/main.css" rel="stylesheet">
 </head>
 
 <body>
-<h2>${profile}'s Offers</h2>
+<h2>${profile}'s Deals</h2>
 <hr>
 <a href = "/">Back to the main page</a>
 <hr>
@@ -24,21 +24,14 @@
         <th>Details</th>
     </tr>
     <%
-        List<InternalOffer> offers = (List<InternalOffer>) request.getAttribute("usersOffers");
+        List<InternalOffer> offers = (List<InternalOffer>) request.getAttribute("usersDeals");
         for (InternalOffer offer : offers) {
     %>
     <tr>
         <td><%= offer.getOid() %></td>
         <td><%= offer.getPrice() %></td>
-        <td><%= offer.getSalesman() %></td>
-        <td>
-            <% if (offer.getStatus() == 1) { %>
-                    <a href = "/users/<%= offer.getBuyer() %>">link</a>
-            <% } else
-               { %>
-                    Offer is active
-            <% }%>
-        </td>
+        <td><a href = "/users/<%= offer.getSalesman() %>">link</a></td>
+        <td><%= offer.getBuyer() %></td>
         <td><%= offer.getPublished() %></td>
         <td><a href = "/offers/<%= offer.getOid() %>">link</a></td>
     </tr>

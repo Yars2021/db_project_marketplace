@@ -1,13 +1,18 @@
 package ru.itmo.service;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToMany;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itmo.db.InternalItem;
 import ru.itmo.db.InternalOffer;
 import ru.itmo.db.OfferRepository;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class OfferService {
@@ -46,5 +51,23 @@ public class OfferService {
         items.addAll(offer.getItems());
 
         return items;
+    }
+
+    public void submitOffer(InternalOffer offer) {
+        if (offerRepository != null) {
+            offerRepository.save(offer);
+        }
+    }
+
+    public void submitOffer(String salesman, Integer price, Set<InternalItem> items) {
+        if (offerRepository != null) {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            LocalDateTime now = LocalDateTime.now();
+
+            InternalOffer internalOffer = new InternalOffer(salesman, "", price, dtf.format(now), 0);
+            internalOffer.setItems(items);
+
+            submitOffer(internalOffer);
+        }
     }
 }

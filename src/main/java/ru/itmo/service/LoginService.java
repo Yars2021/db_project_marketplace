@@ -21,6 +21,13 @@ public class LoginService {
         return tokenUtils.getToken();
     }
 
+    public String getUsernameByLogin(String login) {
+        if (userRepository == null) return "";
+        InternalUser internalUser = userRepository.findByLogin(login);
+        if (internalUser == null) return "";
+        return internalUser.getUsername();
+    }
+
     public boolean validateUser(String login, String password) {
         if (userRepository == null) return false;
         InternalUser internalUser = userRepository.findByLogin(login);

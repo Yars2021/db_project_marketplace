@@ -13,14 +13,14 @@ public class InternalStatus {
     private Integer sid;
 
     @Column(nullable = false)
-    private String status_name;
+    private String status;
 
     public InternalStatus() {
     }
 
-    public InternalStatus(Integer sid, String status_name) {
+    public InternalStatus(Integer sid, String status) {
         this.sid = sid;
-        this.status_name = status_name;
+        this.status = status;
     }
 
     public Integer getSid() {
@@ -31,11 +31,11 @@ public class InternalStatus {
         this.sid = sid;
     }
 
-    public String getStatus_name() {
-        return status_name;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatus_name(String status_name) {
-        this.status_name = status_name;
+    public void setStatus(String status_name) {
+        this.status = status_name;
     }
 }

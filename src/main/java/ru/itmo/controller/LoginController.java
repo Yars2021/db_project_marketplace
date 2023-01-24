@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.itmo.service.LoginService;
 
 @Controller
-@SessionAttributes("name")
+@SessionAttributes("session_username")
 public class LoginController {
     private final LoginService loginService;
 
@@ -20,17 +20,20 @@ public class LoginController {
     }
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
-    public String showWelcomePage(ModelMap model, @RequestParam String name, @RequestParam String password) {
-        boolean isValidUser = loginService.validateUser(name, password);
+    public String showLoginPage(ModelMap model, @RequestParam String session_username, @RequestParam String password) {
+        boolean isValidUser = loginService.validateUser(session_username, password);
 
-        if (!isValidUser) {
-            model.put("errorMessage", "Invalid Credentials");
+        if (isValidUser) model.put("user_status", "Logged in");
+        else {
+            model.put("user_status", "Invalid Credentials");
+            model.put("session_username", "");
             return "login";
         }
 
-        model.put("name", name);
+        model.put("session_username", session_username);
+        model.put("username", loginService.getUsernameByLogin(session_username));
         model.put("password", password);
 
-        return "offers";
+        return "login";
     }
 }
