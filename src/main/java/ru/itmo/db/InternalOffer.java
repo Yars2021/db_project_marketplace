@@ -8,6 +8,11 @@ import java.util.Set;
 public class InternalOffer {
     @Id
     @Column(unique = true, nullable = false)
+    @SequenceGenerator(name="offer_id_seq",
+            sequenceName="offer_id_seq",
+            allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator="offer_id_seq")
     private Integer oid;
 
     @Column(nullable = false, length = 64)
@@ -29,6 +34,14 @@ public class InternalOffer {
     private Set<InternalItem> items;
 
     public InternalOffer() {
+    }
+
+    public InternalOffer(String salesman, String buyer, Integer price, String published, Integer status) {
+        this.salesman = salesman;
+        this.buyer = buyer;
+        this.price = price;
+        this.published = published;
+        this.status = status;
     }
 
     public InternalOffer(Integer oid, String salesman, String buyer, Integer price, String published, Integer status) {

@@ -8,8 +8,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/studs
-    username: s312198
-    password: W3JLGLfajdxkgU7j
+    username:
+    password:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -19,5 +19,8 @@ spring:
       hibernate:
         format_sql: true
   mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
     format:
       date-time: yyyy-MM-dd HH:mm:ss

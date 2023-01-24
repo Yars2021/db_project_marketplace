@@ -26,13 +26,6 @@ public class AppController {
         return "login";
     }
 
-    @GetMapping(path = "/register", produces = MediaType.TEXT_HTML_VALUE)
-    public String registrationPage() {
-        return "register";
-    }
-
-
-
     @GetMapping(path = "/", produces = MediaType.TEXT_HTML_VALUE)
     public String mainOfferPage() {
         return "main";
@@ -45,17 +38,17 @@ public class AppController {
 
     @GetMapping(path = "/users/{user_id}", produces = MediaType.TEXT_HTML_VALUE)
     public String profilePage(@PathVariable(name = "user_id") String user_id) {
-        return "user " + user_id.toString();
+        return "user " + user_id;
     }
 
     @GetMapping(path = "/users/{user_id}/deals", produces = MediaType.TEXT_HTML_VALUE)
     public String dealsPage(@PathVariable(name = "user_id") String user_id) {
-        return "deals of " + user_id.toString();
+        return "deals of " + user_id;
     }
 
     @GetMapping(path = "/users/{user_id}/offers", produces = MediaType.TEXT_HTML_VALUE)
     public String offersPage(@PathVariable(name = "user_id") String user_id) {
-        return "offers of " + user_id.toString();
+        return "offers of " + user_id;
     }
 
     @GetMapping(path = "/create", produces = MediaType.TEXT_HTML_VALUE)

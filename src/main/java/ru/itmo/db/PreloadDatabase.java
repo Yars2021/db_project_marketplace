@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import ru.itmo.service.OfferService;
 import ru.itmo.util.HashPasswordEncoder;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Configuration
@@ -45,12 +45,12 @@ public class PreloadDatabase {
     @Bean
     CommandLineRunner preloadUser(UserRepository repository) {
         return args -> {
-                    for (int i = 0; i < 5; i++) {
-                        repository.save(new InternalUser("user" + i,
-                                hashPasswordEncoder.encode("password" + i),
-                                "Test User " + i,
-                                5, 5, 100));
-                    }
+            for (int i = 0; i < 5; i++) {
+                repository.save(new InternalUser("user" + i,
+                        hashPasswordEncoder.encode("password" + i),
+                        "Test User " + i,
+                        5, 5, 100));
+            }
         };
     }
 
@@ -68,9 +68,12 @@ public class PreloadDatabase {
     @Bean
     CommandLineRunner testService(OfferRepository repository) {
         return args -> {
-           // repository.save(new InternalItem());
-
-           // ArrayList<InternalUser> users =
+//            repository.save(new InternalOffer("user2", "user4", 1241, "12.12.12", 0));
+//
+//            List<InternalOffer> offers = repository.findByBuyer("user4");
+//            for (InternalOffer offer : offers) {
+//                System.out.printf(offer.getOid() + " " + offer.getPrice() + " " + offer.getSalesman());
+//            }
         };
     }
 }
