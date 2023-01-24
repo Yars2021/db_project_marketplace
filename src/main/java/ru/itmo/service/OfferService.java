@@ -1,6 +1,7 @@
 package ru.itmo.service;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.itmo.db.InternalItem;
 import ru.itmo.db.InternalOffer;
 import ru.itmo.db.OfferRepository;
@@ -8,21 +9,18 @@ import ru.itmo.db.OfferRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class OfferService {
+    @Autowired
     private OfferRepository offerRepository;
 
     public OfferService() {
     }
 
-    public OfferService(OfferRepository offerRepository) {
-        this.offerRepository = offerRepository;
-    }
-
     public ArrayList<List<InternalOffer>> getOffersOfUser(String login) {
         ArrayList<List<InternalOffer>> offers = new ArrayList<>(2);
-        offers.add(new ArrayList<InternalOffer>());
-        offers.add(new ArrayList<InternalOffer>());
+        offers.add(new ArrayList<>());
+        offers.add(new ArrayList<>());
 
         if (offerRepository == null) return offers;
         offers.get(0).addAll(offerRepository.findByBuyer(login));

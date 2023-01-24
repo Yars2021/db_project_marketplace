@@ -6,13 +6,14 @@ import org.springframework.context.annotation.Configuration;
 import ru.itmo.service.OfferService;
 import ru.itmo.util.HashPasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Configuration
 public class PreloadDatabase {
     private final HashPasswordEncoder hashPasswordEncoder = new HashPasswordEncoder();
-    private OfferService offerService;
+    private final OfferService offerService;
 
     public PreloadDatabase(OfferService offerService) {
         this.offerService = offerService;
@@ -68,12 +69,9 @@ public class PreloadDatabase {
     @Bean
     CommandLineRunner testService(OfferRepository repository) {
         return args -> {
-//            repository.save(new InternalOffer("user2", "user4", 1241, "12.12.12", 0));
-//
-//            List<InternalOffer> offers = repository.findByBuyer("user4");
-//            for (InternalOffer offer : offers) {
-//                System.out.printf(offer.getOid() + " " + offer.getPrice() + " " + offer.getSalesman());
-//            }
+            repository.save(new InternalOffer("user2", "user4", 1241, "12.12.12", 0));
+
+            ArrayList<List<InternalOffer>> offers = offerService.getOffersOfUser("user2");
         };
     }
 }
