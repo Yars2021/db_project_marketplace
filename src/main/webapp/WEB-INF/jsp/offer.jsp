@@ -37,11 +37,13 @@
     %>
     </table>
 
-<%--    <% if (session.getAttribute("session_username") != null) { %>--%>
+<% if (!"".equals(session.getAttribute("session_username")) && session.getAttribute("session_username") != null && (Boolean) request.getAttribute("purchasable")) { %>
         <form method="post">
             <input type="submit" />
         </form>
-<%--    <% } %>--%>
+<% } %>
+<hr>
+${purchase_status}
 </body>
 
 </html>

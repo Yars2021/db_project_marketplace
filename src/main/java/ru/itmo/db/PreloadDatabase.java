@@ -3,12 +3,7 @@ package ru.itmo.db;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.itmo.service.OfferService;
 import ru.itmo.util.HashPasswordEncoder;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Configuration
 public class PreloadDatabase {
@@ -35,10 +30,11 @@ public class PreloadDatabase {
     @Bean
     CommandLineRunner preloadRarity(RarityRepository repository) {
         return args -> {
-            repository.save(new InternalRarity(0, "Common"));
-            repository.save(new InternalRarity(1, "Rare"));
-            repository.save(new InternalRarity(2, "Epic"));
-            repository.save(new InternalRarity(3, "Legendary"));
+            repository.save(new InternalRarity(0, "Select"));
+            repository.save(new InternalRarity(1, "Deluxe"));
+            repository.save(new InternalRarity(2, "Premium"));
+            repository.save(new InternalRarity(3, "Exclusive"));
+            repository.save(new InternalRarity(4, "Ultra"));
         };
     }
 
@@ -49,6 +45,10 @@ public class PreloadDatabase {
                     hashPasswordEncoder.encode("yars"),
                     "Yaroslav Sukhovey",
                     999, 999, 1000000));
+            repository.save(new InternalUser("Ja_Vani",
+                    hashPasswordEncoder.encode("soul"),
+                    "Ja Vani",
+                    10, 10, 100));
             repository.save(new InternalUser("val_neon",
                     hashPasswordEncoder.encode("overdrive"),
                     "Neon",
@@ -75,25 +75,35 @@ public class PreloadDatabase {
     @Bean
     CommandLineRunner preloadItem(ItemRepository repository) {
         return args -> {
-            repository.save(new InternalItem(0, "Yars", "Test item", 3, "Nothing"));
-            repository.save(new InternalItem(1, "Yars", "A gun", 2, "123"));
-            repository.save(new InternalItem(1, "Yars", "A knife", 1, "456"));
-            repository.save(new InternalItem(0, "Yars", "Something", 0, "gg"));
-            for (int i = 0; i < 30; i++) {
-                repository.save(new InternalItem(ThreadLocalRandom.current().nextInt(0, 2),
-                        "user" + ThreadLocalRandom.current().nextInt(0, 6), "item " + i,
-                        ThreadLocalRandom.current().nextInt(0, 2), "description " + i));
-            }
+            repository.save(new InternalItem(0, "Yars", "RGX 11z Pro Vandal", 3, "RGB lights"));
+            repository.save(new InternalItem(0, "Yars", "Prelude to Chaos Shorty", 3, "My favourite"));
+            repository.save(new InternalItem(1, "Yars", "Champions 2022 Butterfly Knife", 3, "Exclusive"));
+            repository.save(new InternalItem(1, "Yars", "Smite Knife", 0, "It's cursed"));
+
+            repository.save(new InternalItem(0, "Ja_Vani", "Smite Phantom", 0, "It's cursed"));
+            repository.save(new InternalItem(0, "Ja_Vani", "Prime Vandal", 2, "One of the best"));
+            repository.save(new InternalItem(0, "Ja_Vani", "Reaver Vandal", 2, "Overrated but good"));
+            repository.save(new InternalItem(1, "Ja_Vani", "Ego knife", 0, "Why..."));
+
+            repository.save(new InternalItem(0, "val_neon", "Prime 2.0 Bucky", 2, "Clean"));
+            repository.save(new InternalItem(0, "val_neon", "Protocol 781-A Bulldog", 4, "It has voicelines"));
+            repository.save(new InternalItem(0, "val_neon", "RGX 11z Pro Operator", 3, "RGB lights and great sounds"));
+            repository.save(new InternalItem(1, "val_neon", "RGX 11z Pro Firefly", 3, "Just clean"));
+            repository.save(new InternalItem(1, "val_neon", "Prism Knife", 0, "From beta"));
+
+            repository.save(new InternalItem(0, "val_skye", "Araxis vandal", 3, "The newest one"));
+            repository.save(new InternalItem(0, "val_skye", "Sovereign Marshall", 2, "The sounds are just the best"));
+            repository.save(new InternalItem(1, "val_skye", "Luxe Spectre", 0, "Old and weird"));
         };
     }
 
     @Bean
     CommandLineRunner testService(OfferRepository repository) {
         return args -> {
-            repository.save(new InternalOffer("user2", "user4", 1241, "12.12.2012", 0));
-            repository.save(new InternalOffer("Yars", "val_neon", 1600, "09.11.2019", 1));
-            repository.save(new InternalOffer("Yars", "", 1500, "24.01.22", 0));
-            repository.save(new InternalOffer("val_neon", "Yars", 1000, "24.01.22", 1));
+//            repository.save(new InternalOffer("Ja_Vani", "", 1500, "16.02.2002", 0));
+//            repository.save(new InternalOffer("Yars", "val_neon", 1600, "09.11.2019", 1));
+//            repository.save(new InternalOffer("Yars", "", 1500, "24.01.2022", 0));
+//            repository.save(new InternalOffer("val_neon", "Yars", 1000, "24.01.2022", 1));
         };
     }
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itmo.db.InternalItem;
 import ru.itmo.db.InternalOffer;
+import ru.itmo.db.InternalUser;
 import ru.itmo.db.OfferRepository;
 
 import java.time.LocalDateTime;
@@ -80,5 +81,17 @@ public class OfferService {
         if (offerRepository == null || offerRepository.findById(oid).isEmpty()) return 0;
         InternalOffer internalOffer = offerRepository.findById(oid).get();
         return internalOffer.getPrice();
+    }
+
+    public boolean getStatus(Integer oid) {
+        if (offerRepository == null || offerRepository.findById(oid).isEmpty()) return false;
+        InternalOffer internalOffer = offerRepository.findById(oid).get();
+        return internalOffer.getStatus() == 0;
+    }
+
+    public String getSalesman(Integer oid) {
+        if (offerRepository == null || offerRepository.findById(oid).isEmpty()) return "";
+        InternalOffer internalOffer = offerRepository.findById(oid).get();
+        return internalOffer.getSalesman();
     }
 }

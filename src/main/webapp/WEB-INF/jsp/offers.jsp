@@ -10,10 +10,12 @@
 
 <body>
 <h2>Offers</h2>
-<a href = "/login">Login</a>
 <%  if (session.getAttribute("session_username") != null && !"".equals(session.getAttribute("session_username"))) { %>
+    <a href = "/logout">Logout</a>
     <a style="float: right;" href = "/users/${session_username}/create">Create a new offer</a>
-<%  }%>
+<%  } else { %>
+    <a href = "/login">Login</a>
+<%  } %>
 <hr>
 <%  if (session.getAttribute("session_username") != null && !"".equals(session.getAttribute("session_username"))) { %>
         <a href = "/users/${session_username}">Your profile (${session_username})</a>
